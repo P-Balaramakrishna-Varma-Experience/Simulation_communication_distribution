@@ -3,14 +3,17 @@
 #include "Polynomial_rolling.h"
 
 //For using polynomial_hash
-int string_hash(const char *s, const int n)
+unsigned int string_hash(const char *s, const int n)
 {
-    return polynomial_hash(s, n);
+    return (unsigned int) polynomial_hash(s, n);
 }
 
 
 //For using MurmurHahs
-int string_hash(const char *s, const int n)
+unsigned int string_hash(const char *s, const int n)
 {
-    
+    unsigned int seed, Hash_value;
+    seed = 18082002;
+    MurmurHash3_x86_32((void*)s, n, seed, (void*)&Hash_value);
+    return Hash_value;
 }

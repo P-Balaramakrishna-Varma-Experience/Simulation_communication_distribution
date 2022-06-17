@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-int string_hash(const char *s, const int n);
+unsigned int string_hash(const char *s, const int n);
 
 
 #endif
