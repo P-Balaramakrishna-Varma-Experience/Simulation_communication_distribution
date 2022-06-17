@@ -11,20 +11,25 @@
 
 int main(int argc, char* argv[])
 {
+    assert(argc == 3);
+    int K = atoi(argv[2]);
 
     // Opening file in reading mode
-    assert(argc == 2);
     FILE *ptr;
     ptr = fopen(argv[1], "r");
     assert(ptr != NULL);
 
+
     char a;
+    unsigned long int count = 0;
     while (a != EOF)
     {
         a = get_next_char(ptr);
-        printf("%c", a);
+        count++;
     }
-
+    count--;  // To offset the EOF
+    unsigned long int cost = (count + 1 - K) * K;
+    printf("K: %d  cost: %lu\n", K, cost);
 
     //closing file
     fclose(ptr);
