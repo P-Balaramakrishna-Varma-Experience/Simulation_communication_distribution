@@ -6,7 +6,9 @@
 #include "assert.h"
 #include<stdbool.h>
 
+#include "../../src/Common/Read_FASTA.h"
 // Driver code
+
 int main()
 {
     FILE *ptr;
@@ -14,40 +16,13 @@ int main()
     char a = 'a';
 
     // Opening file in reading mode
-    ptr = fopen("text4.txt", "r");
+    ptr = fopen("test.txt", "r");
     assert(ptr != NULL);
 
 
     while (a != EOF)
     {
-        ch = fgetc(ptr);
-        if(ch == EOF)
-        {
-            a = EOF;
-        }
-        else if (ch == 'A'|| ch == 'T' || ch == 'G' || ch == 'C')
-        {
-            a = ch;
-        }
-        else if (ch == 'a' || ch == 't' || ch == 'g' || ch == 'c')
-        {
-            a = ch - 32;
-        }
-        else if (ch == 'N' || ch == 'n' || ch == '\n')
-        {
-            continue;
-        }
-        else if (ch == '>')
-        {
-            while (ch != '\n')
-                ch = fgetc(ptr);
-            continue;
-        }
-        else 
-        {
-            assert(false);
-        }
-
+        a = get_next_char(ptr);
         printf("%c", a);
     }
 
