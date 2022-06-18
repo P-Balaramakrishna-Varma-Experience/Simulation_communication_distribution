@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
-#include "../../src/Common/Read_FASTA.h"
-#include "../../src/Common/kmerReader_FASTA.h"
+#include "Read_FASTA.h"
+#include "KmerReader_FASTA.h"
 
-void print_kmer(const char* kmer, int K)
+void print_kmer(char* kmer, int K)
 {
     if(kmer != NULL)
     {
@@ -16,15 +16,20 @@ void print_kmer(const char* kmer, int K)
 }
 
 
-const char* get_next_kmer(FILE* file, int K)
+char* get_next_kmer(FILE* file, int K)
 {
     static int Now_loc = 0;
+    static bool Initalize = false;
     static char Storage[10000];                 //small enough to fit in L3 cache
-    for(int i = 0; i < K -1; i++)
-        Storage[i] = get_next_char(file);
-        
+
     char ch;
     char* kmer = Storage;
+    if(Initalize == false) 
+    {
+        for(int i = 0; i < K -1; i++)
+            Storage[i] = get_next_char(file);
+        Initalize = true;
+    }
 
 
     //Now lock is possible/starting index for the kmer generated in this iteration.
