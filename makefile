@@ -12,6 +12,8 @@ clean :
 	rm Executables/*.ex
 
 
+Compile = g++  -I/home/christopher/Documents/Simulation/googletest-release-1.11.0/googletest/include/ -L/home/christopher/Documents/Simulation/googletest-release-1.11.0/lib/lib -lpthread -lgtest_main -lgtest
+tests: 
 
 
 
