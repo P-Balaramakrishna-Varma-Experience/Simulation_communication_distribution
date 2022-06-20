@@ -5,6 +5,14 @@
 #include "../src/Common/Read_FASTA.h"
 #include "../src/Common/KmerReader_FASTA.h"
 
+void printState(char *Store, int N, int loc)
+{
+    printf("loc: %d\n", loc);
+    for(int i = 0; i < N; i++)
+        printf("%c", Store[i]);
+    printf("\n");
+}
+
 int main(int argc, char* argv[])
 {
     //Reading from command line arguments file and K value
@@ -14,11 +22,22 @@ int main(int argc, char* argv[])
     assert(ptr != NULL);
 
     char *kmer;
-    kmer = get_next_kmer(ptr, K);
+
+    int N = 20, loc = 0;
+    bool init = false;
+    char Store[N];
+
+    //initialize store array with all 'z'
+    for(int i = 0; i < N; i++)
+        Store[i] = 'z';
+
+
+    kmer = get_next_kmer(ptr, K, Store, N, &loc, &init);
     while(kmer != NULL)
     {
+       // printState(Store, N, loc);
         print_kmer(kmer, K);
-        kmer = get_next_kmer(ptr, K);
+        kmer = get_next_kmer(ptr, K, Store, N, &loc, &init);
     }
 
     //closing file
