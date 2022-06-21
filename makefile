@@ -9,7 +9,7 @@ install: Generate_object_files Generate_executables
 clean : 
 	rm src/Common/*.o
 	rm src/Communication/*.o
-	rm Executables/*.ex
+	rm Executables/*
 
 
 Compile = g++  -I/home/christopher/Documents/Simulation/googletest-release-1.11.0/googletest/include/ -L/home/christopher/Documents/Simulation/googletest-release-1.11.0/lib/lib -lpthread -lgtest_main -lgtest
@@ -39,11 +39,13 @@ $(objects_nh): %.o: %.cpp
 Generate_executables: hash_based_comm_cost min_based_comm_cost hash_based_dist min_based_dist
 
 hash_based_comm_cost: ${Dir_helper}Read_FASTA.o ${Dir_comms}Hash_based.o
-	$(CC) $(CFLAGS) ${Dir_helper}Read_FASTA.o ${Dir_comms}Hash_based.o -o hash_based_comm_cost.ex
+	$(CC) $(CFLAGS) $^ -o $@
 	mv hash_based_comm_cost.ex Executables/
 
 
-
+min_based_comm_cost: ${Dir_helper}Read_FASTA.o ${Dir_helper}KmerReader_FASTA.o ${Dir_helper}ClassicalMinimizer.o ${Dir_comms}Min_based.o
+	$(CC) $(CFLAGS) $^ -o $@
+	mv $@ Executables/
 
 
 
