@@ -1,10 +1,13 @@
 CC = g++
 CFLAGS = -g
+Compile = g++  -I/home/christopher/Documents/Simulation/googletest-release-1.11.0/googletest/include/ -L/home/christopher/Documents/Simulation/googletest-release-1.11.0/lib/lib -lpthread -lgtest_main -lgtest
 Dir_comms = src/Communication/
 Dir_dist = src/Distribution/
 Dir_helper = src/Common/
+Dir_test = Test/
 objects_h = ${Dir_helper}hash_interface.o ${Dir_helper}KmerReader_FASTA.o ${Dir_helper}MurmurHash3.o ${Dir_helper}Polynomial_rolling.o ${Dir_helper}Read_FASTA.o ${Dir_helper}ClassicalMinimizer.o ${Dir_helper}supermer_reader.o
 objects_nh = ${Dir_comms}Hash_based.o ${Dir_comms}Min_based.o
+objects_tt = ${Dir_test}test_minimizer.o
 
 install: Generate_object_files Generate_executables
 
@@ -16,8 +19,8 @@ clean :
 	rm unittests
 
 
-Compile = g++  -I/home/christopher/Documents/Simulation/googletest-release-1.11.0/googletest/include/ -L/home/christopher/Documents/Simulation/googletest-release-1.11.0/lib/lib -lpthread -lgtest_main -lgtest
-tests: Test/test_minimizer.o $(objects_h)
+gentests: tests test_object
+tests: $(objects_tt) $(objects_h)
 	$(Compile) $^ -o unittests
 
 
@@ -53,10 +56,10 @@ min_based_comm_cost: ${Dir_helper}Read_FASTA.o ${Dir_helper}KmerReader_FASTA.o $
 ###############################################################
 
 
-Test/test_minimizer.o: Test/test_minimizer.cpp
+test_object: $(objects_tt)
+$(objects_tt): %.o: %.cpp
 	$(Compile) -c $< -o $@
 
-
-
+#####################################################################
 
 
