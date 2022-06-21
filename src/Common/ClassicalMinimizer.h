@@ -4,6 +4,7 @@
 #include "stdbool.h"
 
 void Classic_Minimizer(char* Ans, int Mlength, int K, char* kmer);
+int Classic_Minimizer_loc(int Mlenght, int K, char* kmer);
 int better_classic_mini(char* str1, char* str2, int M);
 
 #endif

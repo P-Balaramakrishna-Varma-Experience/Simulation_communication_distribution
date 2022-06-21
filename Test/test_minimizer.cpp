@@ -28,4 +28,8 @@ int main(int argc, char* argv[])
    printf("string comp\n\n");
    printf("%d ex:ans>0\n", better_classic_mini("ATGC", "AAAG", 4));
    printf("%d ex:ans<0\n", better_classic_mini("ATGC", "ATTT", 4));
+   printf("%d ex 0 \n", Classic_Minimizer_loc(4, 6, "ATGATC"));
+   printf("%d ex 3 \n", Classic_Minimizer_loc(3, 7, "AGCAAAT"));
+   printf("%d ex 4\n", Classic_Minimizer_loc(2, 8, "ATAGACGC"));
+   printf("%d ex 3\n", Classic_Minimizer_loc(2, 6, "GTGAGC"));
 }
