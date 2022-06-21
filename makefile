@@ -22,7 +22,7 @@ tests:
 Generate_object_files: helper_object main_object
 
 #Generate object files for common/helper files (which have header)
-objects_h = ${Dir_helper}hash_interface.o ${Dir_helper}KmerReader_FASTA.o ${Dir_helper}MurmurHash3.o ${Dir_helper}Polynomial_rolling.o ${Dir_helper}Read_FASTA.o ${Dir_helper}ClassicalMinimizer.o
+objects_h = ${Dir_helper}hash_interface.o ${Dir_helper}KmerReader_FASTA.o ${Dir_helper}MurmurHash3.o ${Dir_helper}Polynomial_rolling.o ${Dir_helper}Read_FASTA.o ${Dir_helper}ClassicalMinimizer.o ${Dir_helper}supermer_reader.o
 helper_object: $(objects_h)
 $(objects_h): %.o: %.cpp %.h
 	$(CC) -c $(CFLAGS) $< -o $@
@@ -40,7 +40,7 @@ Generate_executables: hash_based_comm_cost min_based_comm_cost hash_based_dist m
 
 hash_based_comm_cost: ${Dir_helper}Read_FASTA.o ${Dir_comms}Hash_based.o
 	$(CC) $(CFLAGS) $^ -o $@
-	mv hash_based_comm_cost.ex Executables/
+	mv $@ Executables/
 
 
 min_based_comm_cost: ${Dir_helper}Read_FASTA.o ${Dir_helper}KmerReader_FASTA.o ${Dir_helper}ClassicalMinimizer.o ${Dir_comms}Min_based.o
