@@ -21,3 +21,5 @@ This repo is for simulation of communication cost and distribution efficiency of
     - error in composstiion. (idea is not correct)
     - error in implementation idea step correct but did not implement that step correctly.
     - check the abstract constructs which are beings used ? correctly??
+
+- verify results
