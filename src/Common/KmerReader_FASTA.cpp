@@ -26,6 +26,7 @@ char* get_next_kmer(FILE* file, int K, char* Storage, int N, int* loc, bool* Ini
         for(int i = 0; i < K -1; i++)
             Storage[i] = get_next_char(file);
         *Initialize = true;
+        *loc = 0;
     }
 
 
