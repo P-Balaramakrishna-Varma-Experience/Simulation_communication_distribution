@@ -2,3 +2,4 @@ Input_DNA/*
 *.zip
 *.o
 Executables/
+unittests
