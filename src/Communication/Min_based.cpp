@@ -10,6 +10,8 @@
 #include "../../src/Common/ClassicalMinimizer.h"
 // Driver code
 
+#define _Mcomm_value 4
+
 void PrintArray(char *A, int L)
 {
     for(int i = 0; i < L; i++)
@@ -28,7 +30,7 @@ int main(int argc, char* argv[])
 
 
     unsigned long int cost = 0;
-    int M = 3, N = 1000, loc;
+    int M = _Mcomm_value, N = 1000, loc;
     char Prev[M], New[M], *Kmer_read, Storage[N];
     for(int i = 0; i < N; i++)
        Storage[i] = 'Z';

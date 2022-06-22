@@ -6,7 +6,7 @@ Dir_dist = src/Distribution/
 Dir_helper = src/Common/
 Dir_test = Test/
 objects_h = ${Dir_helper}hash_interface.o ${Dir_helper}KmerReader_FASTA.o ${Dir_helper}MurmurHash3.o ${Dir_helper}Polynomial_rolling.o ${Dir_helper}Read_FASTA.o ${Dir_helper}ClassicalMinimizer.o ${Dir_helper}supermer_reader.o ${Dir_helper}hash_table_dist.o
-objects_nh = ${Dir_comms}Hash_based.o ${Dir_comms}Min_based.o ${Dir_dist}Hash_based.o ${Dir_dist}Min_based.o
+objects_nh = ${Dir_comms}Hash_based.o ${Dir_comms}Min_based.o ${Dir_comms}Min_based_faster.o ${Dir_dist}Hash_based.o ${Dir_dist}Min_based.o
 objects_tt = ${Dir_test}test_minimizer.o ${Dir_test}test_hash_function.o ${Dir_test}test_file_reader.o ${Dir_test}test_kmer_reader.o ${Dir_test}test_super_reader.o
 
 install: Generate_object_files Generate_executables
@@ -42,7 +42,7 @@ $(objects_nh): %.o: %.cpp
 
 ##############################################################
 
-Generate_executables: hash_based_comm_cost min_based_comm_cost hash_based_dist min_based_dist
+Generate_executables: hash_based_comm_cost min_based_comm_cost hash_based_dist min_based_dist min_based_comm_fast
 
 hash_based_comm_cost: ${Dir_helper}Read_FASTA.o ${Dir_comms}Hash_based.o
 	$(CC) $(CFLAGS) $^ -o $@
@@ -61,6 +61,9 @@ min_based_dist: ${objects_h} ${Dir_dist}Min_based.o
 	$(CC) $(CFLAGS) $^ -o $@
 	mv $@ Executables/
 
+min_based_comm_fast: ${objects_h} ${Dir_comms}Min_based_faster.o
+	$(CC) $(CFLAGS) $^ -o $@
+	mv $@ Executables/
 ###############################################################
 
 
