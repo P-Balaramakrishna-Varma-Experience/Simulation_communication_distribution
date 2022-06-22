@@ -66,6 +66,6 @@ int main(int argc, char* argv[])
 
     fclose(ptr);
 
-    printf("K: %d  cost: %lu\n", K, cost);
+    printf("%d,%lu\n", K, cost);
     return 0;
 }

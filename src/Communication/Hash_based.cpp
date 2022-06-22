@@ -28,8 +28,9 @@ int main(int argc, char* argv[])
         count++;
     }
     count--;  // To offset the EOF
+    assert(count >= K);
     unsigned long int cost = (count + 1 - K) * K;
-    printf("K: %d  cost: %lu\n", K, cost);
+    printf("%d,%lu\n", K, cost);
 
     //closing file
     fclose(ptr);

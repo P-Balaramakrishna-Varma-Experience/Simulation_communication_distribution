@@ -3,3 +3,4 @@ Input_DNA/*
 *.o
 Executables/
 unittests
+Data/
