@@ -23,3 +23,8 @@ This repo is for simulation of communication cost and distribution efficiency of
     - check the abstract constructs which are beings used ? correctly??
 
 - verify results
+
+
+
+//Taking t to be prime number gives much better performance
+//printing output of dist
