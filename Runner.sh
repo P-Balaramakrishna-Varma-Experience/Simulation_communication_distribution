@@ -10,7 +10,12 @@ Version=$4
 mkdir ./Data/$Dir
 rm ./Data/$Dir/$Exe_Name$FileName$Version.csv
 touch ./Data/$Dir/$Exe_Name$FileName$Version.csv
-echo "k,cost" > ./Data/$Dir/$Exe_Name$FileName$Version.csv
+
+if [[ "$Exe_Name" == "hash_based_comm_cost" || "$Exe_Name" == "min_based_comm_cost" ]]; then
+    echo "k,cost" > ./Data/$Dir/$Exe_Name$FileName$Version.csv
+else
+    echo "k,t,hash,variance" > ./Data/$Dir/$Exe_Name$FileName$Version.csv
+fi
 
 
 #Filling data to the file
