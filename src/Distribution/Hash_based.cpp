@@ -10,7 +10,7 @@
 //number of bucktes == number of thread
 void Distribute(char* kmer, int K, int* Hash_Table, int t, unsigned int (*hash_function)(const char* kmer, const int n));
 int* Init_hashTable(int t);
-void PrintHashTable(int* hash_tabe, int t);
+void PrintHashTable(int* hash_tabe, int t, char* HashName);
 
 int main(int argc, char* argv[])
 {
@@ -18,9 +18,15 @@ int main(int argc, char* argv[])
     int K = atoi(argv[2]);
     FILE* file = fopen(argv[1], "r");
 
-    int t = 5;
-    int *hash_table_geek = Init_hashTable(t);
-    int *hash_table_mur = Init_hashTable(t);
+    int No_of_t = 3;
+    int TValues[] = {5, 10, 6};
+
+    int *Hash_Tables_geek[No_of_t], *Hash_Tables_mur[No_of_t];
+    for(int i = 0; i < No_of_t; i++)
+    {
+        Hash_Tables_geek[i] = Init_hashTable(TValues[i]);
+        Hash_Tables_mur[i] = Init_hashTable(TValues[i]);
+    }
 
 
     int N = 1000, loc = 0;
@@ -31,19 +37,26 @@ int main(int argc, char* argv[])
     kmer = get_next_kmer(file, K, store, N, &loc, &init);
     while (kmer != NULL)
     {
-        Distribute(kmer, K, hash_table_geek, t, string_hash_geek);
-        Distribute(kmer, K, hash_table_mur, t, string_hash_murmur3);
+        for(int i = 0; i < No_of_t; i++)
+        {
+            Distribute(kmer, K, Hash_Tables_geek[i], TValues[i], string_hash_geek);
+            Distribute(kmer, K, Hash_Tables_mur[i], TValues[i], string_hash_murmur3);
+        }
 
         kmer = get_next_kmer(file, K, store, N, &loc, &init);
     }
-    
-    printf("geek");
-    PrintHashTable(hash_table_geek, t);
-    printf("murmur");
-    PrintHashTable(hash_table_mur, t);
 
-    free(hash_table_geek);
-    free(hash_table_mur);
+    for(int i = 0; i < No_of_t; i++)    
+    {
+        PrintHashTable(Hash_Tables_geek[i], TValues[i], "geeks");
+        PrintHashTable(Hash_Tables_mur[i], TValues[i], "murmur3");
+    }
+
+    for(int i = 0; i < No_of_t; i++)
+    {
+        free(Hash_Tables_geek[i]);
+        free(Hash_Tables_mur[i]);
+    }
 }
 
 
@@ -65,9 +78,9 @@ int* Init_hashTable(int t)
     return HashTable;
 }
 
-void PrintHashTable(int* hash_tabe, int t)
+void PrintHashTable(int* hash_tabe, int t, char* HashName)
 {
-    printf("\n");
+    printf("Name: %s, T: %d :  ", HashName, t);
     for(int i = 0; i < t; i++)
         printf("%d ", hash_tabe[i]);
     printf("\n");
