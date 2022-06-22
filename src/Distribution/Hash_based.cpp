@@ -8,7 +8,7 @@
 #include "../Common/KmerReader_FASTA.h"
 
 //number of bucktes == number of thread
-void Distribute(char* kmer, int K, int* Hash_Table, int t);
+void Distribute(char* kmer, int K, int* Hash_Table, int t, unsigned int (*hash_function)(const char* kmer, const int n));
 int* Init_hashTable(int t);
 void PrintHashTable(int* hash_tabe, int t);
 
@@ -19,7 +19,8 @@ int main(int argc, char* argv[])
     FILE* file = fopen(argv[1], "r");
 
     int t = 5;
-    int *hash_table = Init_hashTable(t);
+    int *hash_table_geek = Init_hashTable(t);
+    int *hash_table_mur = Init_hashTable(t);
 
 
     int N = 1000, loc = 0;
@@ -30,21 +31,28 @@ int main(int argc, char* argv[])
     kmer = get_next_kmer(file, K, store, N, &loc, &init);
     while (kmer != NULL)
     {
-        Distribute(kmer, K, hash_table, t);
+        Distribute(kmer, K, hash_table_geek, t, string_hash_geek);
+        Distribute(kmer, K, hash_table_mur, t, string_hash_murmur3);
+
         kmer = get_next_kmer(file, K, store, N, &loc, &init);
     }
     
-    PrintHashTable(hash_table, t);
-    free(hash_table);
+    printf("geek");
+    PrintHashTable(hash_table_geek, t);
+    printf("murmur");
+    PrintHashTable(hash_table_mur, t);
+
+    free(hash_table_geek);
+    free(hash_table_mur);
 }
 
 
 
 //Taking t to be prime number gives much better performance
 //Initalize Hash_Table all values to be 0
-void Distribute(char* kmer, int K, int* Hash_Table, int t)
+void Distribute(char* kmer, int K, int* Hash_Table, int t, unsigned int (*hash_function)(const char* kmer, const int n))
 {
-    unsigned int hashvalue = string_hash_geek(kmer, K);
+    unsigned int hashvalue = hash_function(kmer, K);
     int bucket_no = hashvalue % t;
     Hash_Table[bucket_no]++;
 }
