@@ -10,7 +10,8 @@
 //number of bucktes == number of thread
 void Distribute(char* kmer, int K, int* Hash_Table, int t, unsigned int (*hash_function)(const char* kmer, const int n));
 int* Init_hashTable(int t);
-void PrintHashTable(int* hash_tabe, int t, char* HashName);
+void PrintHashTable(int* hash_tabe, int t, char* HashName, int K);
+double VarinaceHashTable(int *Input, int N);
 
 int main(int argc, char* argv[])
 {
@@ -48,8 +49,8 @@ int main(int argc, char* argv[])
 
     for(int i = 0; i < No_of_t; i++)    
     {
-        PrintHashTable(Hash_Tables_geek[i], TValues[i], "geeks");
-        PrintHashTable(Hash_Tables_mur[i], TValues[i], "murmur3");
+        PrintHashTable(Hash_Tables_geek[i], TValues[i], "geeks", K);
+        PrintHashTable(Hash_Tables_mur[i], TValues[i], "murmur3", K);
     }
 
     for(int i = 0; i < No_of_t; i++)
@@ -78,10 +79,25 @@ int* Init_hashTable(int t)
     return HashTable;
 }
 
-void PrintHashTable(int* hash_tabe, int t, char* HashName)
+void PrintHashTable(int* hash_tabe, int t, char* HashName, int K)
 {
-    printf("Name: %s, T: %d :  ", HashName, t);
-    for(int i = 0; i < t; i++)
-        printf("%d ", hash_tabe[i]);
-    printf("\n");
+    printf("%d,%d,%s,%lf\n", K, t, HashName, VarinaceHashTable(hash_tabe, t));
+}
+
+
+//Generated via copilot recheck
+//caliculate variance for the given numbers in the array
+double VarinaceHashTable(int *Input, int N)
+{
+    double mean = 0;
+    for(int i = 0; i < N; i++)
+        mean += Input[i];
+    mean /= N;
+
+    double variance = 0;
+    for(int i = 0; i < N; i++)
+        variance += (Input[i] - mean) * (Input[i] - mean);
+    variance /= N;
+
+    return variance;
 }

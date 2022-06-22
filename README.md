@@ -28,3 +28,6 @@ This repo is for simulation of communication cost and distribution efficiency of
 
 //Taking t to be prime number gives much better performance
 //printing output of dist
+//varaince
+//format
+k,t,hash,var
