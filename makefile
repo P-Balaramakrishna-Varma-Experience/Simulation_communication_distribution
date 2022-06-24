@@ -14,6 +14,7 @@ install: Generate_object_files Generate_executables
 clean : 
 	rm src/Common/*.o
 	rm src/Communication/*.o
+	rm src/Distribution
 	rm Executables/*
 	rm Test/*.o
 	rm unittests
