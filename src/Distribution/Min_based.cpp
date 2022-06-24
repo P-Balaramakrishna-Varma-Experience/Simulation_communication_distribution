@@ -34,8 +34,8 @@ int main(int argc, char* argv[])
     {
         for(int i = 0; i < No_of_t; i++)
         {
-            Distribute(Min, M, Hash_Tables_geek[i], TValues[i], string_hash_geek);
-            Distribute(Min, M, Hash_Tables_mur[i], TValues[i], string_hash_murmur3);
+            Distribute(Min, M, Hash_Tables_geek[i], TValues[i], string_hash_geek, len - K + 1);
+            Distribute(Min, M, Hash_Tables_mur[i], TValues[i], string_hash_murmur3, len - K + 1);
         }
 
         len = get_next_supermer(file, K, M, Min, supermer, sN);

@@ -35,8 +35,8 @@ int main(int argc, char* argv[])
     {
         for(int i = 0; i < No_of_t; i++)
         {
-            Distribute(kmer, K, Hash_Tables_geek[i], TValues[i], string_hash_geek);
-            Distribute(kmer, K, Hash_Tables_mur[i], TValues[i], string_hash_murmur3);
+            Distribute(kmer, K, Hash_Tables_geek[i], TValues[i], string_hash_geek, 1);
+            Distribute(kmer, K, Hash_Tables_mur[i], TValues[i], string_hash_murmur3, 1);
         }
 
         kmer = get_next_kmer(file, K, store, N, &loc, &init);
