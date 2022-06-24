@@ -1,5 +1,6 @@
 import os, sys, csv
 import matplotlib.pyplot as plt
+from numpy import double
 
 
 #this function extracs the version name to be used in the legend
@@ -59,20 +60,21 @@ for dir_name in Dirs:
         with open(File_Path, 'r') as f:
             reader = csv.reader(f)
             for row in reader:
+                if row[0] == "k": 
+                    continue
                 if (row[0], row[2]) not in Dict:
                     Dict[(row[0], row[2])] = {}
-                Dict[(row[0], row[2])][row[1]] = row[3]
+                Dict[(row[0], row[2])][int(row[1])] = float(row[3])
         Data.append(Dict)
 
 
     for hash_func in Hash_Functions:
         for K in K_Values:
             for index in range(len(files)):
-                X_Strings = Data[index][(K, hash_func)].keys()
-                Y_Strings = Data[index][(K, hash_func)].values()
-                X_values = [int(x) for x in X_Strings]
-                Y_values = [float(y) for y in Y_Strings]
-                plt.plot(X_values, Y_values, label=extract_version(files[index]))
+                X_values = Data[index][(K, hash_func)].keys()
+                Y_values = Data[index][(K, hash_func)].values()
+                t_values, var_values = zip(*sorted(zip(X_values, Y_values)))
+                plt.plot(t_values, var_values, label=extract_version(files[index]))
                 plt.legend()
                 plt.xlabel("T values")
                 plt.ylabel("variance")
