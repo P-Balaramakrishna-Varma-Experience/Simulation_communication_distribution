@@ -38,3 +38,39 @@ k,t,hash,var
     - to complie for different minimizer themes.(huge work)
 - file wise seperation parallesim across machines.
 - Run report.py with all files in the experiment directory.
+
+
+# hash function extension
+- The complication is that we are trying to reduce disk acess.
+- Not makeing any new .cpp files
+
+## Declaring (explicit human searching net , using intellegecne)
+- hash function.cpp and hash function.h
+- Integrate it to hash_interface.h hash_interface.cpp
+
+## Defininig (can be automed/do not try)
+- Every file using hash_based.cpp
+    - Every for loop add a line for the new hash table
+
+## Build system
+- add to object_h 
+
+## Running system
+- No change needed
+
+## Reporting system
+- Hash function array insert an element
+
+# Minimizer extension Simple 1
+Allows any form of minimizers to implemented simply
+- write Minimizer.cpp and Minimzer.h with only function to give minimizer.
+- extend by creating a super_reader for each of the executabe (small change in code base??)
+- write a new executable for very minimizer function.
+- Build system Write a new exectuable to be build.
+- Running sytem array in HigherRunner.sh add executable.
+- Reporting system No change
+** Perfect way expect for beings slow by a factor of K ** (200??)
+
+
+
+### Version names meant for naming graphs
