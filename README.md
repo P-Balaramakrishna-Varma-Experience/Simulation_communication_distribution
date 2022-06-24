@@ -31,3 +31,10 @@ This repo is for simulation of communication cost and distribution efficiency of
 //varaince
 //format
 k,t,hash,var
+
+# interface
+- for every input file run every program.
+    - batch file telling which all programs to run for a input file
+    - to complie for different minimizer themes.(huge work)
+- file wise seperation parallesim across machines.
+- Run report.py with all files in the experiment directory.

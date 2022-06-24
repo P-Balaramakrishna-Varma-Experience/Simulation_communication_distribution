@@ -8,11 +8,11 @@
 
 //Taking t to be prime number gives much better performance
 //Initalize Hash_Table all values to be 0
-void Distribute(char* kmer, int K, int* Hash_Table, int t, unsigned int (*hash_function)(const char* kmer, const int n))
+void Distribute(char* kmer, int K, int* Hash_Table, int t, unsigned int (*hash_function)(const char* kmer, const int n), int N)
 {
     unsigned int hashvalue = hash_function(kmer, K);
     int bucket_no = hashvalue % t;
-    Hash_Table[bucket_no]++;
+    Hash_Table[bucket_no] += N;
 }
 
 int* Init_hashTable(int t)
