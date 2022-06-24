@@ -40,7 +40,7 @@ char get_next_char(FILE *ptr)
         }
         else
         {
-            assert(false);
+            printf("Woring undected char %c %d\n", ch, ch);
         }
     }
     return ans;
