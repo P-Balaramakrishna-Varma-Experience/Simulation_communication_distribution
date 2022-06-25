@@ -19,8 +19,9 @@ int main(int argc, char* argv[])
     int TValues[] = {5, 10, 6};
 
     //int *Hash_Tables_geek[No_of_t], *Hash_Tables_mur[No_of_t];
-    int** Hash_Tables_geek = (int **)malloc(sizeof(int *) * No_of_t);
-    int** Hash_Tables_mur = (int **)malloc(sizeof(int *) * No_of_t);
+    //int** Hash_Tables_geek = (int **)malloc(sizeof(int *) * No_of_t);
+    //int** Hash_Tables_mur = (int **)malloc(sizeof(int *) * No_of_t);
+    int *Hash_Tables_geek[No_of_t], *Hash_Tables_mur[No_of_t];
     for(int i = 0; i < No_of_t; i++)
     {
         Hash_Tables_geek[i] = Init_hashTable(TValues[i]);
