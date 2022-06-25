@@ -3,6 +3,7 @@
 #include <string.h>
 #include "assert.h"
 #include <stdbool.h>
+#include <math.h>
 
 #include "hash_table_dist.h"
 
@@ -47,5 +48,6 @@ double VarinaceHashTable(int *Input, int N)
         variance += (Input[i] - mean) * (Input[i] - mean);
     variance /= N;
 
-    return variance;
+    //return square root of variance
+    return sqrt(variance);
 }

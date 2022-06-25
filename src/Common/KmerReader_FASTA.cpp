@@ -31,7 +31,7 @@ char* get_next_kmer(FILE* file, int K, char* Storage, int N, int* loc, bool* Ini
 
 
     //Now lock is possible/starting index for the kmer generated in this iteration.
-    if(*loc + K >= 10000 - K)
+    if(*loc + K >= N - K)
     {
         for(int i = 0; i < K; i++)            
             Storage[i] = Storage[*loc + i];
