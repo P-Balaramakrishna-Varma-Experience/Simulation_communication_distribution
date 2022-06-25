@@ -1,4 +1,5 @@
 import os, sys, csv
+from matplotlib import markers
 import matplotlib.pyplot as plt
 from numpy import double
 
@@ -15,7 +16,8 @@ def readcsv(cur_dir, filename, col_no, Dir):
         reader = csv.reader(f)
         Ans = [row[col_no - 1] for row in reader]
         Ans.pop(0)
-        return Ans
+        Cost = [int(i) for i in Ans]
+        return Cost
 
 
 assert(len(sys.argv) == 2)
@@ -37,7 +39,7 @@ for dir_name in Dirs:
         Data.append(readcsv(dir_name, file, 2, Dir))
 
     for index in range(len(Data)):
-        plt.plot(K_Values, Data[index], label=extract_version(files[index]))
+        plt.plot(K_Values, Data[index], label=extract_version(files[index]), marker = 'o')
 
     plt.legend()
     plt.xlabel("K values")
@@ -75,9 +77,9 @@ for dir_name in Dirs:
                 X_values = Data[index][(K, hash_func)].keys()
                 Y_values = Data[index][(K, hash_func)].values()
                 t_values, var_values = zip(*sorted(zip(X_values, Y_values)))
-                plt.plot(t_values, var_values, label=extract_version(files[index]))
+                plt.plot(t_values, var_values, label=extract_version(files[index]), marker = 'o')
                 plt.legend()
                 plt.xlabel("T values")
-                plt.ylabel("variance")
+                plt.ylabel("std deviation")
                 plt.savefig("./Plots/" + Dir + "Dist_" + dir_name + hash_func + "_" + str(K) + "_"  + ".png")
             plt.clf()
