@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -g
+CFLAGS = -g -lm
 Compile = g++  -I/home/christopher/Documents/Simulation/googletest-release-1.11.0/googletest/include/ -L/home/christopher/Documents/Simulation/googletest-release-1.11.0/lib/lib -lpthread -lgtest_main -lgtest
 Dir_comms = src/Communication/
 Dir_dist = src/Distribution/

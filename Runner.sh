@@ -22,7 +22,7 @@ fi
 
 #Filling data to the file
 K_values=("10" "30" "50" "100" "200")
-K_values=("1" "3" "5" "10")
+# K_values=("1" "3" "5" "10")
 for K in ${K_values[@]}; do 
     #echo $K
     ./Executables/$Exe_Name ./Input_DNA/$FileName $K >> "./Data/${Dir}/${FileName}/${Exe_Name}x${Version}.csv"

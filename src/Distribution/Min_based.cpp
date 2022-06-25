@@ -16,8 +16,8 @@ int main(int argc, char* argv[])
     int K = atoi(argv[2]);
     FILE* file = fopen(argv[1], "r");
 
-    int No_of_t = 3;
-    int TValues[] = {5, 10, 6};
+    int No_of_t = 12;
+    int TValues[] = {4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192};
 
     int *Hash_Tables_geek[No_of_t], *Hash_Tables_mur[No_of_t];
     for(int i = 0; i < No_of_t; i++)

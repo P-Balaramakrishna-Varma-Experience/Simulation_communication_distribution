@@ -21,7 +21,8 @@ def readcsv(cur_dir, filename, col_no, Dir):
 assert(len(sys.argv) == 2)
 Dir = sys.argv[1]
 Dirs = os.listdir("./Data/" + Dir)
-K_Values = ["1", "3", "5", "10"]
+K_Values = ["10", "30", "50", "100", "200"]
+#K_Values = ["1", "3", "5", "10"]
 Hash_Functions = ['geeks', 'murmur3']
 
 
