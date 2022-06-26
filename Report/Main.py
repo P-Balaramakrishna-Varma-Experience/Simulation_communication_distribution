@@ -10,6 +10,7 @@ def extract_version(Exe_version):
 
 
 # this function returns a list of all elemenents in coloum col_no of the csv file
+# order to be taken cares
 def readcsv(cur_dir, filename, col_no, Dir):
     filename = "./Data/" + Dir + "/" + cur_dir + "/" + filename
     with open(filename, 'r') as f:
