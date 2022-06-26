@@ -15,10 +15,18 @@ def readcsv(cur_dir, filename, col_no, Dir):
     filename = "./Data/" + Dir + "/" + cur_dir + "/" + filename
     with open(filename, 'r') as f:
         reader = csv.reader(f)
-        Ans = [row[col_no - 1] for row in reader]
-        Ans.pop(0)
-        Cost = [int(i) for i in Ans]
+        File_data = [row for row in reader]
+        File_data.pop(0)
+        Sorted_data = sorted(File_data, key=lambda x: int(x[0]))
+        Cost = [float(row[col_no - 1]) for row in Sorted_data]
         return Cost
+
+
+
+
+
+
+
 
 
 assert(len(sys.argv) == 2)
@@ -27,6 +35,12 @@ Dirs = os.listdir("./Data/" + Dir)
 K_Values = ["10", "30", "50", "100", "200"]
 #K_Values = ["1", "3", "5", "10"]
 Hash_Functions = ['geeks', 'murmur3']
+
+if not os.path.exists("./Plots/"):
+    os.mkdir("./Plots/")
+if not os.path.exists("./Plots/" + Dir):
+    os.mkdir("./Plots/" + Dir + "/")
+
 
 
 #ploting communication costs
@@ -45,7 +59,7 @@ for dir_name in Dirs:
     plt.legend()
     plt.xlabel("K values")
     plt.ylabel("Communication costs")
-    plt.savefig("./Plots/" + Dir + "Comm_costs_" + dir_name + ".png")
+    plt.savefig("./Plots/" + Dir + "/" + "Comm_costs_" + dir_name + ".png")
     plt.clf()
 
 
@@ -82,5 +96,5 @@ for dir_name in Dirs:
                 plt.legend()
                 plt.xlabel("T values")
                 plt.ylabel("std deviation")
-                plt.savefig("./Plots/" + Dir + "Dist_" + dir_name + hash_func + "_" + str(K) + "_"  + ".png")
+                plt.savefig("./Plots/" + Dir + "/" + "Dist_" + dir_name + hash_func + "_" + str(K) + "_"  + ".png")
             plt.clf()
