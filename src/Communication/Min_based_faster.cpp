@@ -28,7 +28,7 @@ int main(int argc, char* argv[])
     ptr = fopen(argv[1], "r");
     assert(ptr != NULL);
 
-    int M = K/X + 1, sN = 10000, len;
+    int M = K - K/X, sN = 10000, len;
     char Min[M], store[sN];
     unsigned long int cost = 0;
 

@@ -30,7 +30,7 @@ int main(int argc, char* argv[])
 
 
     unsigned long int cost = 0;
-    int M = K/X + 1, N = 10000, loc;
+    int M = K - K/X, N = 10000, loc;
     char Prev[M], New[M], *Kmer_read, Storage[N];
     for(int i = 0; i < N; i++)
        Storage[i] = 'Z';

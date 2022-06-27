@@ -26,7 +26,7 @@ int main(int argc, char* argv[])
         Hash_Tables_mur[i] = Init_hashTable(TValues[i]);
     }
 
-    int sN = 10000, M = K/X + 1, len = 0;
+    int sN = 10000, M = K - K/X, len = 0;
     char supermer[sN], Min[M];
 
     len = get_next_supermer(file, K, M, Min, supermer, sN);
