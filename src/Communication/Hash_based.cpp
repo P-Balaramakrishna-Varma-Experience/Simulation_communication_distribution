@@ -20,14 +20,14 @@ int main(int argc, char* argv[])
     assert(ptr != NULL);
 
 
-    char a;
+    char a = 'a';
     unsigned long int count = 0;
     while (a != EOF)
     {
         a = get_next_char(ptr);
-        count++;
+        if (a != EOF)
+            count++;
     }
-    count--;  // To offset the EOF
     assert(count >= K);
     unsigned long int cost = (count + 1 - K) * K;
     printf("%d,%lu\n", K, cost);

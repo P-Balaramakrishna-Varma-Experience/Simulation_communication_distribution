@@ -79,6 +79,12 @@ int get_next_supermer(FILE* file, int K, int M, char *Min, char* Storage, int sN
     }
 
     strncpy(Tem, &Storage[loc - K + 1], K - 1);
-    Tem[K] = get_next_char(file);
-    return loc;
+    Tem[K - 1] = get_next_char(file);
+    if(Tem[K - 1] == EOF)
+    {
+        reached_eof = true;
+        return loc;
+    }
+    else
+        return loc;
 }
