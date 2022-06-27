@@ -19,6 +19,7 @@ void Distribute(char* kmer, int K, int* Hash_Table, int t, unsigned int (*hash_f
 int* Init_hashTable(int t)
 {
     int *HashTable = (int*)malloc(sizeof(int) * t);
+    assert(HashTable != NULL);
     for(int i = 0; i < t; i++)
         HashTable[i] = 0;
     return HashTable;
