@@ -12,8 +12,8 @@
 
 int get_next_supermer(FILE* file, int K, int M, char *Min, char* Storage, int sN)
 {
-    static char Tem[1000];
-    static int tN = 1000;
+    static char Tem[10000];
+    static int tN = 10000;
     static bool intialized = false, reached_eof = false;
     char TempMin[M];
 

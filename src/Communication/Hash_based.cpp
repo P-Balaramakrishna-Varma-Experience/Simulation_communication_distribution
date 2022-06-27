@@ -11,7 +11,8 @@
 
 int main(int argc, char* argv[])
 {
-    assert(argc == 3);
+    assert(argc == 4);
+    int X = atoi(argv[3]);
     int K = atoi(argv[2]);
 
     // Opening file in reading mode

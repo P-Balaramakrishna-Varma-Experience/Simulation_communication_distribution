@@ -1,7 +1,7 @@
 import threading, subprocess, sys, itertools, os
 
 def runner(exe, k, file, lock):
-    Exe_line = "./Executables/" + exe + " " + "./Input_DNA/" + File_name + " " + str(k) 
+    Exe_line = "./Executables/" + exe + " " + "./Input_DNA/" + File_name + " " + str(k) + " " + M_value
     proc = subprocess.Popen(Exe_line, stdout=subprocess.PIPE, shell=True)
     (out, err) = proc.communicate()
     lock.acquire()
@@ -35,9 +35,10 @@ def Program_handler(exe, ver):
 
 
 
-assert(len(sys.argv) == 3)
+assert(len(sys.argv) == 4)
 Dir = sys.argv[1]
 File_name = sys.argv[2]
+M_value = sys.argv[3]
 Executables = ["hash_based_comm_cost", "hash_based_dist", "min_based_comm_cost", "min_based_dist"]
 Versions = ["hash", "hash", "min", "min"]
 K_values = [10, 30, 50, 100, 200]

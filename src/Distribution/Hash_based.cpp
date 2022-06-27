@@ -10,7 +10,8 @@
 
 int main(int argc, char* argv[])
 {
-    assert(argc == 3);
+    assert(argc == 4);
+    int X = atoi(argv[3]);
     int K = atoi(argv[2]);
     FILE* file = fopen(argv[1], "r");
     assert(file != NULL);
@@ -26,7 +27,7 @@ int main(int argc, char* argv[])
     }
 
 
-    int N = 1000, loc = 0;
+    int N = 10000, loc = 0;
     bool init = false;
     char store[N];
     char *kmer;

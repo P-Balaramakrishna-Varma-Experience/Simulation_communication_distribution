@@ -8,11 +8,11 @@
 #include "../Common/supermer_reader.h"
 #include "../Common/hash_table_dist.h"
 
-#define _M_value 4
 
 int main(int argc, char* argv[])
 {
-    assert(argc == 3);
+    assert(argc == 4);
+    int X = atoi(argv[3]);
     int K = atoi(argv[2]);
     FILE* file = fopen(argv[1], "r");
 
@@ -26,7 +26,7 @@ int main(int argc, char* argv[])
         Hash_Tables_mur[i] = Init_hashTable(TValues[i]);
     }
 
-    int sN = 10000, M = _M_value, len = 0;
+    int sN = 10000, M = K/X + 1, len = 0;
     char supermer[sN], Min[M];
 
     len = get_next_supermer(file, K, M, Min, supermer, sN);

@@ -9,7 +9,6 @@
 #include "../../src/Common/KmerReader_FASTA.h"
 #include "../../src/Common/supermer_reader.h"
 // Driver code
-#define _Mcomm_value 4
 
 void PrintArray(char *A, int L)
 {
@@ -21,14 +20,15 @@ void PrintArray(char *A, int L)
 int main(int argc, char* argv[])
 {
     //Taking input
-    assert(argc == 3);
+    assert(argc == 4);
+    int X = atoi(argv[3]);
     int K = atoi(argv[2]);
     
     FILE *ptr;
     ptr = fopen(argv[1], "r");
     assert(ptr != NULL);
 
-    int M = _Mcomm_value, sN = 10000, len;
+    int M = K/X + 1, sN = 10000, len;
     char Min[M], store[sN];
     unsigned long int cost = 0;
 
