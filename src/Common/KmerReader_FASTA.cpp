@@ -25,28 +25,29 @@ char* get_next_kmer(FILE* file, int K, char* Storage, int N, int* loc, bool* Ini
     {
         for(int i = 0; i < K -1; i++)
             Storage[i] = get_next_char(file);
-        *Initialize = true;
         *loc = 0;
+        *Initialize = true;
     }
 
 
     //Now lock is possible/starting index for the kmer generated in this iteration.
     if(*loc + K >= N - K)
     {
-        for(int i = 0; i < K; i++)            
+        for(int i = 0; i < K - 1; i++)            
             Storage[i] = Storage[*loc + i];
         *loc = 0;
-        //printf(":log:");
     }
 
     Storage[*loc + K - 1] = get_next_char(file);  //Get next char store in k'th postion.
-    if(Storage[*loc + K - 1] == EOF)
-        return NULL;
-    else
+    if(Storage[*loc + K - 1] != EOF)
     {
         kmer = &Storage[*loc];
         *loc = *loc + 1;                                      //now lock set for next iteration.
+        return kmer;
+    }
+    else
+    {
+        return NULL;
     }
 
-    return kmer;
 }
