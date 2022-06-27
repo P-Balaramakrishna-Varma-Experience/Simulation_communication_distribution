@@ -30,7 +30,7 @@ int main(int argc, char* argv[])
 
     int M = _Mcomm_value, sN = 10000, len;
     char Min[M], store[sN];
-    unsigned int cost = 0;
+    unsigned long int cost = 0;
 
     len = get_next_supermer(ptr, K, M, Min, store, sN);
     while (len > 0)

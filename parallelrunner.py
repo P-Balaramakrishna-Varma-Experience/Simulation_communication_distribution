@@ -15,9 +15,9 @@ def Program_handler(exe, ver):
     f = open(file_path, "w", encoding="utf-8")
 
     if("comm" in exe):
-        f.write("k,comm\n")
+        f.write("K,cost\n")
     else:
-        f.write("k,t,hash,varinace\n")
+        f.write("K,t,hash,variance\n")
 
 
     Specif_Threads = []

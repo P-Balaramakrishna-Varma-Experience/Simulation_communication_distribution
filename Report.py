@@ -59,7 +59,9 @@ for dir_name in Dirs:
     plt.legend()
     plt.xlabel("K values")
     plt.ylabel("Communication costs")
-    plt.savefig("./Plots/" + Dir + "/" + "Comm_costs_" + dir_name + ".png")
+    if not os.path.exists("./Plots/" + Dir + "/" + dir_name):
+        os.mkdir("./Plots/" + Dir + "/" + dir_name)
+    plt.savefig("./Plots/" + Dir + "/" + dir_name + "/" + "comm_cost" + ".png")
     plt.clf()
 
 
@@ -78,7 +80,7 @@ for dir_name in Dirs:
         with open(File_Path, 'r') as f:
             reader = csv.reader(f)
             for row in reader:
-                if row[0] == "k": 
+                if row[0] == "K": 
                     continue
                 if (row[0], row[2]) not in Dict:
                     Dict[(row[0], row[2])] = {}
@@ -96,5 +98,7 @@ for dir_name in Dirs:
                 plt.legend()
                 plt.xlabel("T values")
                 plt.ylabel("std deviation")
-                plt.savefig("./Plots/" + Dir + "/" + "Dist_" + dir_name + hash_func + "_" + str(K) + "_"  + ".png")
+                if not os.path.exists("./Plots/" + Dir + "/" + dir_name):
+                    os.mkdir("./Plots/" + Dir + "/" + dir_name)
+                plt.savefig("./Plots/" + Dir + "/" + dir_name + "/" + "dist_" + hash_func + "_" + str(K) + "_"  + ".png")
             plt.clf()
