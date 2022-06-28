@@ -7,6 +7,7 @@
 #include "../Common/hash_interface.h"
 #include "../Common/supermer_reader.h"
 #include "../Common/hash_table_dist.h"
+#include "../Common/Mapping.h"
 
 
 int main(int argc, char* argv[])
@@ -17,7 +18,11 @@ int main(int argc, char* argv[])
     FILE* file = fopen(argv[1], "r");
 
     int No_of_t = 12;
-    int TValues[] = {4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192};
+    int NValues[] = {4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192};
+
+    int TValues[No_of_t];
+    for(int i = 0; i < No_of_t; i++)
+        TValues[i] = 8192;
 
     int *Hash_Tables_geek[No_of_t], *Hash_Tables_mur[No_of_t];
     for(int i = 0; i < No_of_t; i++)
@@ -43,6 +48,8 @@ int main(int argc, char* argv[])
 
     for(int i = 0; i < No_of_t; i++)    
     {
+        Remap(&Hash_Tables_geek[i], TValues[i], NValues[i]);
+        Remap(&Hash_Tables_mur[i], TValues[i], NValues[i]);
         PrintHashTable(Hash_Tables_geek[i], TValues[i], "geeks", K);
         PrintHashTable(Hash_Tables_mur[i], TValues[i], "murmur3", K);
     }
