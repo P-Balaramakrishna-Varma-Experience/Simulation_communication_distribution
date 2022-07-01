@@ -17,7 +17,8 @@ def Program_handler(exe, ver):
     if("comm" in exe):
         f.write("K,cost\n")
     else:
-        f.write("K,t,hash,variance\n")
+        #f.write("K,t,hash,variance\n")
+        pass
 
 
     Specif_Threads = []
@@ -39,8 +40,10 @@ assert(len(sys.argv) == 4)
 Dir = sys.argv[1]
 File_name = sys.argv[2]
 M_value = sys.argv[3]
-Executables = ["hash_based_comm_cost", "hash_based_dist", "min_based_comm_cost", "min_based_dist", "min_based_dist_up"]
-Versions = ["hash", "hash", "min", "min", "min_remap"]
+#Executables = ["hash_based_comm_cost", "hash_based_dist", "min_based_comm_cost", "min_based_dist", "min_based_dist_up"]
+Executables = ["min_based_dist"]
+#Versions = ["hash", "hash", "min", "min", "min_remap"]
+Versions = ["min"]
 K_values = [10, 30, 50, 100, 200]
 
 

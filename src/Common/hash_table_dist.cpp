@@ -27,11 +27,22 @@ int* Init_hashTable(int t)
 
 void PrintHashTable(int* hash_tabe, int t, char* HashName, int K)
 {
-    printf("%d,%d,%s,%lf\n", K, t, HashName, VarinaceHashTable(hash_tabe, t));
-    /*printf("Name: %s, T: %d :  ", HashName, t);
+    //printf("%d,%d,%s,%lf\n", K, t, HashName, VarinaceHashTable(hash_tabe, t));
+    printf("{\n");
+    printf("\t\"Name\": \"%s\"\,\n", HashName);
+    printf("\t\"K\": %d\,\n", K);
+    printf("\t\"T\": %d\,\n", t);
+    printf("\t\"Data\": [");
     for(int i = 0; i < t; i++)
-        printf("%d ", hash_tabe[i]);
-    printf("\n");*/
+    {
+        if(i != t - 1)
+            printf("%d, ", hash_tabe[i]);
+        else
+            printf("%d", hash_tabe[i]);
+
+    }
+    printf("]\n");
+    printf("},\n");
 }
 
 
