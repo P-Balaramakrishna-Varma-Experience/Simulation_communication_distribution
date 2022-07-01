@@ -22,7 +22,7 @@ int main(int argc, char* argv[])
 
     int TValues[No_of_t];
     for(int i = 0; i < No_of_t; i++)
-        TValues[i] = 8192;
+        TValues[i] = 16384;
 
     int *Hash_Tables_geek[No_of_t], *Hash_Tables_mur[No_of_t];
     for(int i = 0; i < No_of_t; i++)
@@ -50,8 +50,8 @@ int main(int argc, char* argv[])
     {
         Remap(&Hash_Tables_geek[i], TValues[i], NValues[i]);
         Remap(&Hash_Tables_mur[i], TValues[i], NValues[i]);
-        PrintHashTable(Hash_Tables_geek[i], TValues[i], "geeks", K);
-        PrintHashTable(Hash_Tables_mur[i], TValues[i], "murmur3", K);
+        PrintHashTable(Hash_Tables_geek[i], NValues[i], "geeks", K);
+        PrintHashTable(Hash_Tables_mur[i], NValues[i], "murmur3", K);
     }
 
     for(int i = 0; i < No_of_t; i++)

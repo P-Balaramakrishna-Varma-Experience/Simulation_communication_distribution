@@ -94,6 +94,7 @@ for dir_name in Dirs:
                 X_values = Data[index][(K, hash_func)].keys()
                 Y_values = Data[index][(K, hash_func)].values()
                 t_values, var_values = zip(*sorted(zip(X_values, Y_values)))
+                plt.xscale("log")
                 plt.plot(t_values, var_values, label=extract_version(files[index]), marker = 'o')
                 plt.legend()
                 plt.xlabel("T values")
